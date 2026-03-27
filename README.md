@@ -1,3 +1,8 @@
+# Team Members
+1. Kishan Kumar MANTHRI
+2. Harreshh MOUROUGAN
+
+
 # Knowledge Graph End-to-End Project
 
 This repository implements a full 4-phase Knowledge Graph (KG) pipeline:
