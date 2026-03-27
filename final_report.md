@@ -1,5 +1,7 @@
+# Team Members
+1. Kishan Kumar MANTHRI
+2. Harreshh MOUROUGAN
 # End-to-End Knowledge Graph Pipeline Report
-
 ## Abstract
 This project implements a full Knowledge Graph (KG) pipeline across four phases: information extraction (IE), private KB construction and expansion, reasoning plus knowledge graph embeddings (KGE), and a SPARQL-based RAG chatbot. The pipeline starts from web pages, extracts entity-relation triples with spaCy and dependency-based heuristics, builds RDF data with alignment to Wikidata using `owl:sameAs`, expands the graph using linked neighbors, and trains KGE models (TransE and ComplEx) for link prediction. The system produced a final expanded graph with 39,457 triples and 4,041 typed entities, and generated complete KGE artifacts (`train/valid/test`, metrics, t-SNE, nearest neighbors). The RAG module is implemented and smoke-tested structurally; full LLM-answer evaluation is pending local Ollama runtime.
 
