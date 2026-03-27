@@ -1,0 +1,14 @@
+httpx>=0.27.0
+trafilatura>=1.9.0
+lxml_html_clean>=0.4.4
+spacy>=3.8.0
+rdflib>=7.0.0
+owlready2>=0.46
+pykeen>=1.11.0
+class-resolver==0.5.4
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.5.0
+matplotlib>=3.9.0
+requests>=2.32.0
+tqdm>=4.66.0

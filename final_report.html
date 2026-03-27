@@ -1,0 +1,187 @@
+<h1 id="end-to-end-knowledge-graph-pipeline-report">End-to-End Knowledge Graph Pipeline Report</h1>
+<h2 id="abstract">Abstract</h2>
+<p>This project implements a full Knowledge Graph (KG) pipeline across four phases: information extraction (IE), private KB construction and expansion, reasoning plus knowledge graph embeddings (KGE), and a SPARQL-based RAG chatbot. The pipeline starts from web pages, extracts entity-relation triples with spaCy and dependency-based heuristics, builds RDF data with alignment to Wikidata using <code>owl:sameAs</code>, expands the graph using linked neighbors, and trains KGE models (TransE and ComplEx) for link prediction. The system produced a final expanded graph with 39,457 triples and 4,041 typed entities, and generated complete KGE artifacts (<code>train/valid/test</code>, metrics, t-SNE, nearest neighbors). The RAG module is implemented and smoke-tested structurally; full LLM-answer evaluation is pending local Ollama runtime.</p>
+<h2 id="domain-and-objectives">1. Domain and Objectives</h2>
+<p>The domain combines scientific biographies and institutions from seed pages such as Marie Curie, Albert Einstein, CERN, University of Oxford, United Nations, and New York City. The project goals were: - Convert noisy HTML into structured relational data. - Build and expand a private KB with semantic interoperability via Wikidata alignment. - Compare symbolic reasoning and embedding-based inference. - Build a question-answering interface that maps natural language to SPARQL.</p>
+<h2 id="phase-1-data-acquisition-and-information-extraction">2. Phase 1: Data Acquisition and Information Extraction</h2>
+<h3 id="method">2.1 Method</h3>
+<ul>
+<li>Fetch and clean web pages using Trafilatura (with minimum useful text threshold).</li>
+<li>Run NER with spaCy (<code>en_core_web_trf</code> target; fallback to <code>en_core_web_sm</code>).</li>
+<li>Extract candidate relations by co-occurring entities in sentences and dependency-driven verb linking.</li>
+<li>Save outputs as raw JSONL and normalized CSV triples.</li>
+</ul>
+<h3 id="outputs">2.2 Outputs</h3>
+<ul>
+<li>Raw crawl output: <a href="data/raw/crawler_output.jsonl">data/raw/crawler_output.jsonl</a></li>
+<li>Extracted IE triples: <a href="data/processed/extracted_knowledge.csv">data/processed/extracted_knowledge.csv</a></li>
+</ul>
+<h3 id="quantitative-ie-results">2.3 Quantitative IE Results</h3>
+<ul>
+<li>Extracted relations (rows): 16,140</li>
+<li>Unique entities (subject/object union): 3,066</li>
+<li>Unique predicates: 371</li>
+</ul>
+<h3 id="entity-ambiguity-examples-required">2.4 Entity Ambiguity Examples (Required)</h3>
+<p>Ambiguity was measured by checking when the same surface form appears with multiple NER labels.</p>
+<ol type="1">
+<li><code>Marić</code> labeled as <code>PERSON</code>, <code>ORG</code>, and <code>GPE</code></li>
+<li><code>Maria</code> labeled as <code>PERSON</code>, <code>ORG</code>, and <code>GPE</code></li>
+<li><code>Guterres</code> labeled as <code>PERSON</code>, <code>ORG</code>, and <code>GPE</code></li>
+</ol>
+<p>These examples illustrate common IE noise from Wikipedia-style text, where surnames or partial mentions are context-sensitive.</p>
+<h2 id="phase-2-kb-construction-alignment-and-expansion">3. Phase 2: KB Construction, Alignment, and Expansion</h2>
+<h3 id="method-1">3.1 Method</h3>
+<ul>
+<li>Build an initial RDF graph from extracted triples using RDFLib.</li>
+<li>Define ontology-level structure for core classes and predicates.</li>
+<li>Align entities to Wikidata with <code>owl:sameAs</code> when confidence/normalization criteria are met.</li>
+<li>Expand graph by querying linked neighbors (1-hop / predicate-controlled retrieval).</li>
+</ul>
+<h3 id="files-produced">3.2 Files Produced</h3>
+<ul>
+<li>Initial KB: <a href="data/kb/initial_kb.ttl">data/kb/initial_kb.ttl</a></li>
+<li>Alignment graph: <a href="data/kb/alignment.ttl">data/kb/alignment.ttl</a></li>
+<li>Ontology file: <a href="data/kb/ontology.owl">data/kb/ontology.owl</a></li>
+<li>Expanded KB: <a href="data/kb/expanded_kb.nt">data/kb/expanded_kb.nt</a></li>
+</ul>
+<h3 id="final-kb-statistics-required">3.3 Final KB Statistics (Required)</h3>
+<ul>
+<li>Initial triples: 28,344</li>
+<li>Expanded triples: 39,457</li>
+<li>Alignment links (<code>owl:sameAs</code>): 93</li>
+<li>Distinct URI entities: 4,745</li>
+<li>Typed entities (<code>rdf:type</code> subjects): 4,041</li>
+<li>Distinct predicates: 762</li>
+</ul>
+<h2 id="phase-3-reasoning-and-knowledge-graph-embeddings">4. Phase 3: Reasoning and Knowledge Graph Embeddings</h2>
+<h3 id="symbolic-reasoning">4.1 Symbolic Reasoning</h3>
+<p>A symbolic rule path is implemented in <code>reasoning_kge.py</code> using OWLReady2-style workflow. In this run, symbolic reasoning demo was skipped due local runtime package availability warning, but the code path is integrated and reusable.</p>
+<h3 id="kge-training-setup">4.2 KGE Training Setup</h3>
+<ul>
+<li>Triple split: 80/10/10</li>
+<li>Train triples: 20,178</li>
+<li>Validation triples: 2,522</li>
+<li>Test triples: 2,523</li>
+<li>Models: TransE and ComplEx</li>
+</ul>
+<p>Artifacts: - <a href="data/kge/train.txt">data/kge/train.txt</a> - <a href="data/kge/valid.txt">data/kge/valid.txt</a> - <a href="data/kge/test.txt">data/kge/test.txt</a> - <a href="data/kge/metrics.csv">data/kge/metrics.csv</a> - <a href="data/kge/nearest_neighbors.csv">data/kge/nearest_neighbors.csv</a> - <a href="data/kge/tsne.png">data/kge/tsne.png</a></p>
+<h3 id="evaluation-results-required">4.3 Evaluation Results (Required)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;">MRR</th>
+<th style="text-align: right;">Hits@10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TransE</td>
+<td style="text-align: right;">0.0187</td>
+<td style="text-align: right;">0.0515</td>
+</tr>
+<tr class="even">
+<td>ComplEx</td>
+<td style="text-align: right;">0.0023</td>
+<td style="text-align: right;">0.0035</td>
+</tr>
+</tbody>
+</table>
+<p>In this dataset and short-epoch setup, TransE outperformed ComplEx on both ranking metrics.</p>
+<h3 id="embedding-visualization-and-qualitative-analysis">4.4 Embedding Visualization and Qualitative Analysis</h3>
+<p>The t-SNE projection is shown below:</p>
+<figure>
+<img src="data/kge/tsne.png" alt="t-SNE of TransE entities" /><figcaption aria-hidden="true">t-SNE of TransE entities</figcaption>
+</figure>
+<p>Observation: the embedding cloud is broad with weakly separated micro-regions, indicating noisy heterogeneous relations and mixed lexical/entity namespaces.</p>
+<p>Nearest-neighbor sample from <a href="data/kge/nearest_neighbors.csv">data/kge/nearest_neighbors.csv</a>: - <code>http://barbaragoldsmith.com</code> nearest neighbors include <code>http://example.org/kg/America</code> (0.4965), <code>http://example.org/kg/Police_Athletic_League</code> (0.4825) - Neighbor quality indicates some semantic signal but also schema/noise artifacts from expanded web entities.</p>
+<h2 id="phase-4-sparql-rag-chatbot">5. Phase 4: SPARQL-RAG Chatbot</h2>
+<h3 id="architecture">5.1 Architecture</h3>
+<p>Implemented in <a href="src/rag_chatbot.py">src/rag_chatbot.py</a>: - Schema summarization of classes/predicates/prefixes - Prompting local LLM (Ollama model, e.g., <code>gemma:2b</code>) to generate SPARQL - Query execution with RDFLib - Self-repair loop for malformed/failed SPARQL - CLI interaction loop for demo</p>
+<h3 id="runtime-status">5.2 Runtime Status</h3>
+<ul>
+<li>Structural smoke test of script: passed</li>
+<li>Local Ollama endpoint at <code>http://localhost:11434</code> was not running in the final pipeline run</li>
+<li>Therefore, full answer-quality benchmarking is pending execution with live model</li>
+</ul>
+<h3 id="required-baseline-vs-sparql-rag-evaluation-template">5.3 Required Baseline vs SPARQL-RAG Evaluation (Template)</h3>
+<p>Use at least 5 questions and complete this table after starting Ollama:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Baseline (No RAG)</th>
+<th>SPARQL-RAG Answer</th>
+<th>Correct?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Who is Marie Curie?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Which organization is linked to Einstein in the KB?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>What entities are connected to CERN?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Is New York City typed as a place in the KG?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>What are the top related entities for United Nations?</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="reflection-and-discussion-required">6. Reflection and Discussion (Required)</h2>
+<h3 id="kb-noise-analysis">6.1 KB Noise Analysis</h3>
+<p>Primary noise sources: - NER ambiguity on short or partial mentions. - Open-web extraction introduces non-canonical entity URIs. - Expanded neighbor retrieval adds long-tail predicates not always task-relevant.</p>
+<p>Practical impact: - Higher relation diversity (762 predicates) increases graph coverage. - But noise reduces embedding separability and can lower link-prediction precision.</p>
+<h3 id="rule-based-vs-embedding-based-reasoning">6.2 Rule-Based vs Embedding-Based Reasoning</h3>
+<p>Rule-based reasoning: - Strengths: transparent, auditable, deterministic for explicit logic constraints. - Weaknesses: brittle with sparse/noisy schemas and incomplete facts.</p>
+<p>Embedding-based reasoning: - Strengths: can infer latent links from distributional patterns. - Weaknesses: less interpretable and sensitive to data quality/noise.</p>
+<p>Conclusion: A hybrid approach is most practical: use symbolic rules for high-confidence constraints and KGE for candidate generation/ranking under incompleteness.</p>
+<h2 id="reproducibility-and-execution">7. Reproducibility and Execution</h2>
+<h3 id="full-pipeline-command">7.1 Full Pipeline Command</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">EPOCHS</span><span class="op">=</span>2 <span class="va">MAX_EXPAND</span><span class="op">=</span>50000 <span class="va">SKIP_RAG</span><span class="op">=</span>0 <span class="ex">./run_all.sh</span></span></code></pre></div>
+<h3 id="what-the-runner-verifies">7.2 What the Runner Verifies</h3>
+<p><code>run_all.sh</code> executes all phases and checks all required artifacts with PASS/FAIL. In the latest run, all required non-RAG artifacts passed.</p>
+<h3 id="complete-rag-benchmark-run">7.3 Complete RAG Benchmark Run</h3>
+<p>After starting Ollama:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ollama</span> pull gemma:2b</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> src/rag_chatbot.py <span class="at">--model</span> gemma:2b</span></code></pre></div>
+<p>Then fill Section 5.3 with observed outputs.</p>
+<h2 id="limitations-and-next-steps">8. Limitations and Next Steps</h2>
+<ul>
+<li>Expand curated seed list to reduce domain drift.</li>
+<li>Add confidence scoring and relation filtering before KB ingestion.</li>
+<li>Normalize entity URIs with stronger canonicalization/disambiguation.</li>
+<li>Tune KGE hyperparameters and train longer for better MRR/Hits@10.</li>
+<li>Add automatic evaluator for RAG answers against SPARQL ground truth.</li>
+</ul>
+<h2 id="appendix-file-checklist">Appendix: File Checklist</h2>
+<p>Code modules: - <a href="src/crawler.py">src/crawler.py</a> - <a href="src/kb_builder.py">src/kb_builder.py</a> - <a href="src/reasoning_kge.py">src/reasoning_kge.py</a> - <a href="src/rag_chatbot.py">src/rag_chatbot.py</a></p>
+<p>Core data artifacts: - <a href="data/raw/crawler_output.jsonl">data/raw/crawler_output.jsonl</a> - <a href="data/processed/extracted_knowledge.csv">data/processed/extracted_knowledge.csv</a> - <a href="data/kb/initial_kb.ttl">data/kb/initial_kb.ttl</a> - <a href="data/kb/alignment.ttl">data/kb/alignment.ttl</a> - <a href="data/kb/ontology.owl">data/kb/ontology.owl</a> - <a href="data/kb/expanded_kb.nt">data/kb/expanded_kb.nt</a> - <a href="data/kge/train.txt">data/kge/train.txt</a> - <a href="data/kge/valid.txt">data/kge/valid.txt</a> - <a href="data/kge/test.txt">data/kge/test.txt</a> - <a href="data/kge/metrics.csv">data/kge/metrics.csv</a> - <a href="data/kge/nearest_neighbors.csv">data/kge/nearest_neighbors.csv</a> - <a href="data/kge/tsne.png">data/kge/tsne.png</a></p>

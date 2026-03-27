@@ -1,0 +1,180 @@
+{
+  "Q1_Who_is_Marie_Curie": {
+    "type": "SELECT",
+    "row_count": 20,
+    "rows": [
+      [
+        "http://example.org/kg/retrieve",
+        "http://example.org/kg/Paris"
+      ],
+      [
+        "http://example.org/kg/retrieve",
+        "http://example.org/kg/The_Radium_Institute"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/Physics"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/Paris"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/the_Russian_Academy_of_Sciences"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/Congress_Poland__Womens"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/the_American_Philosophical_Society__20thcentury"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/France"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/the_USSR_Academy_of_Sciences__Inventors"
+      ],
+      [
+        "http://example.org/kg/physicist",
+        "http://example.org/kg/LibriVox"
+      ]
+    ]
+  },
+  "Q2_Org_linked_to_Einstein": {
+    "type": "SELECT",
+    "row_count": 20,
+    "rows": [
+      [
+        "Duits-gebore teoretiese fisikus; wie die relatiwiteitsteorie voorgestel het (1879\u20131955)"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/Albert_Einstein"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/CERN"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/New_York_City"
+      ],
+      [
+        "https://en.wikipedia.org/wiki/Marie_Curie"
+      ],
+      [
+        "http://example.org/kg/American_Association_for_the_Advancement_of_Science"
+      ],
+      [
+        "http://example.org/kg/Influence_on_Physics"
+      ],
+      [
+        "http://example.org/kg/the_ETH_Zurich"
+      ],
+      [
+        "http://example.org/kg/Doc"
+      ],
+      [
+        "http://example.org/kg/Vol"
+      ]
+    ]
+  },
+  "Q3_Entities_connected_to_CERN": {
+    "type": "SELECT",
+    "row_count": 20,
+    "rows": [
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Taiwan"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/BBC_Radio"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Future_Circular"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Albania"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Australia"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Gran_Sasso"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Cuba"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Archival"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Large_Hadron"
+      ],
+      [
+        "http://example.org/kg/relatedTo",
+        "http://example.org/kg/Kuwait"
+      ]
+    ]
+  },
+  "Q4_Is_NYC_place": {
+    "type": "ASK",
+    "answer": true
+  },
+  "Q5_Top_related_to_UN": {
+    "type": "SELECT",
+    "row_count": 20,
+    "rows": [
+      [
+        "http://example.org/kg/UN",
+        "4"
+      ],
+      [
+        "http://example.org/kg/U_Thant",
+        "1"
+      ],
+      [
+        "http://example.org/kg/Casals",
+        "1"
+      ],
+      [
+        "http://example.org/kg/Pau_Casals",
+        "1"
+      ],
+      [
+        "http://example.org/kg/W_H",
+        "1"
+      ],
+      [
+        "http://example.org/kg/the_United_Nations",
+        "1"
+      ],
+      [
+        "United Nations'",
+        "1"
+      ],
+      [
+        "United Nations",
+        "1"
+      ],
+      [
+        "http://example.org/kg/Sanaa",
+        "1"
+      ],
+      [
+        "http://example.org/kg/Roosevelt",
+        "1"
+      ]
+    ]
+  }
+}

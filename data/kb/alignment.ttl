@@ -1,0 +1,189 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+
+<http://example.org/kg/Acadmie> owl:sameAs wd:Q337526 .
+
+<http://example.org/kg/Albert_Einstein> owl:sameAs wd:Q937 .
+
+<http://example.org/kg/Alfonso_XII> owl:sameAs wd:Q32347 .
+
+<http://example.org/kg/Anne_Hidalgo> owl:sameAs wd:Q2851133 .
+
+<http://example.org/kg/Barbara> owl:sameAs wd:Q153957 .
+
+<http://example.org/kg/Barbara_Goldsmith> owl:sameAs wd:Q3634634 .
+
+<http://example.org/kg/Bronisawa> owl:sameAs wd:Q4177563 .
+
+<http://example.org/kg/Camille> owl:sameAs wd:Q5160736 .
+
+<http://example.org/kg/Charlotte_Hoffman_Kellogg> owl:sameAs wd:Q29840747 .
+
+<http://example.org/kg/Craig> owl:sameAs wd:Q2671794 .
+
+<http://example.org/kg/Curie> owl:sameAs wd:Q229354 .
+
+<http://example.org/kg/Daniel> owl:sameAs wd:Q14516546 .
+
+<http://example.org/kg/Dava> owl:sameAs wd:Q1473 .
+
+<http://example.org/kg/Dmitri> owl:sameAs wd:Q19812227 .
+
+<http://example.org/kg/Dominique_Reymond> owl:sameAs wd:Q1238309 .
+
+<http://example.org/kg/Eiffel> owl:sameAs wd:Q732089 .
+
+<http://example.org/kg/Einstein> owl:sameAs wd:Q16834800 .
+
+<http://example.org/kg/Elliott_Cresson_Medal> owl:sameAs wd:Q1332315 .
+
+<http://example.org/kg/Ernest_Rutherford> owl:sameAs wd:Q9123 .
+
+<http://example.org/kg/Franklin_Medal> owl:sameAs wd:Q3141777 .
+
+<http://example.org/kg/Gabriel_Lippmann> owl:sameAs wd:Q133232 .
+
+<http://example.org/kg/Goldsmith> owl:sameAs wd:Q13553587 .
+
+<http://example.org/kg/Greer> owl:sameAs wd:Q16870300 .
+
+<http://example.org/kg/Gsta_MittagLeffler> owl:sameAs wd:Q357154 .
+
+<http://example.org/kg/Guglielmo_Marconi> owl:sameAs wd:Q36488 .
+
+<http://example.org/kg/Hendrik_Lorentz> owl:sameAs wd:Q41688 .
+
+<http://example.org/kg/Henri_Becquerel> owl:sameAs wd:Q41269 .
+
+<http://example.org/kg/Henryk_Sienkiewicz> owl:sameAs wd:Q41502 .
+
+<http://example.org/kg/Hertha_Ayrton> owl:sameAs wd:Q17522 .
+
+<http://example.org/kg/Irne_JoliotCurie> owl:sameAs wd:Q7504 .
+
+<http://example.org/kg/Isabelle_Vauglin> owl:sameAs wd:Q117214921 .
+
+<http://example.org/kg/Jane> owl:sameAs wd:Q1682564 .
+
+<http://example.org/kg/John> owl:sameAs wd:Q4925477 .
+
+<http://example.org/kg/Jzef> owl:sameAs wd:Q19688659 .
+
+<http://example.org/kg/Jzef_Boguski> owl:sameAs wd:Q4180245 .
+
+<http://example.org/kg/Jzef_Skodowski> owl:sameAs wd:Q11731363 .
+
+<http://example.org/kg/Jzef_WieruszKowalski> owl:sameAs wd:Q11730603 .
+
+<http://example.org/kg/Jzio> owl:sameAs wd:Q105656756 .
+
+<http://example.org/kg/Karolina_Gruszka> owl:sameAs wd:Q448475 .
+
+<http://example.org/kg/Kazimierz_Duski> owl:sameAs wd:Q4162667 .
+
+<http://example.org/kg/Kazimierz_orawski> owl:sameAs wd:Q1373679 .
+
+<http://example.org/kg/Krakw> owl:sameAs wd:Q31487 .
+
+<http://example.org/kg/Krystyna> owl:sameAs wd:Q20020126 .
+
+<http://example.org/kg/L_Pearce_Williams> owl:sameAs wd:Q6456593 .
+
+<http://example.org/kg/Langevin> owl:sameAs wd:Q243304 .
+
+<http://example.org/kg/Lawrence_Aronovitch> owl:sameAs wd:Q6503814 .
+
+<http://example.org/kg/Lise> owl:sameAs wd:Q6981730 .
+
+<http://example.org/kg/Lyce_Marie_Curie> owl:sameAs wd:Q3268836 .
+
+<http://example.org/kg/Manya> owl:sameAs wd:Q65109790 .
+
+<http://example.org/kg/Marguerite_Perey> owl:sameAs wd:Q241822 .
+
+<http://example.org/kg/Maria> owl:sameAs wd:Q325872 .
+
+<http://example.org/kg/Maria_CurieSkodowska> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Maria_Salomea_Skodowska> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Maria_Skodowska> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Maria_SkodowskaCurie> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Maria_Skodowska_Curies> owl:sameAs wd:Q107128008 .
+
+<http://example.org/kg/Marie> owl:sameAs wd:Q632104 .
+
+<http://example.org/kg/Marie_Curie> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Marie_Curie_High_School> owl:sameAs wd:Q656313 .
+
+<http://example.org/kg/Marie_Curies> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Marie_Mattingly_Meloney> owl:sameAs wd:Q6762948 .
+
+<http://example.org/kg/Marie_Meloney> owl:sameAs wd:Q6762948 .
+
+<http://example.org/kg/Marie_Nolle> owl:sameAs wd:Q19869346 .
+
+<http://example.org/kg/Marie_Skodowska_Curie> owl:sameAs wd:Q7186 .
+
+<http://example.org/kg/Mervyn_LeRoy> owl:sameAs wd:Q103788 .
+
+<http://example.org/kg/Muse_Curie> owl:sameAs wd:Q589336 .
+
+<http://example.org/kg/Nelson> owl:sameAs wd:Q2782528 .
+
+<http://example.org/kg/Off_West_End> owl:sameAs wd:Q17016513 .
+
+<http://example.org/kg/Otto_Hahn> owl:sameAs wd:Q57065 .
+
+<http://example.org/kg/Patricia_Fara> owl:sameAs wd:Q7145573 .
+
+<http://example.org/kg/Paul_Langevin> owl:sameAs wd:Q25320 .
+
+<http://example.org/kg/Paul_Sen> owl:sameAs wd:Q115079388 .
+
+<http://example.org/kg/Peter> owl:sameAs wd:Q2793400 .
+
+<http://example.org/kg/Pierre> owl:sameAs wd:Q2093070 .
+
+<http://example.org/kg/Pierre_Curie> owl:sameAs wd:Q37463 .
+
+<http://example.org/kg/Pierre_Curies> owl:sameAs wd:Q52459885 .
+
+<http://example.org/kg/Roach> owl:sameAs wd:Q53673023 .
+
+<http://example.org/kg/Rseau> owl:sameAs wd:Q14915744 .
+
+<http://example.org/kg/Rue_PierreCurie> owl:sameAs wd:Q114842819 .
+
+<http://example.org/kg/Sophie_Berthelot> owl:sameAs wd:Q3490850 .
+
+<http://example.org/kg/Stefan_Meyer> owl:sameAs wd:Q102417287 .
+
+<http://example.org/kg/Susan> owl:sameAs wd:Q14936243 .
+
+<http://example.org/kg/Susan_Quinn> owl:sameAs wd:Q110610725 .
+
+<http://example.org/kg/Svante_Arrhenius> owl:sameAs wd:Q80956 .
+
+<http://example.org/kg/Tadeusz_Estreicher> owl:sameAs wd:Q445766 .
+
+<http://example.org/kg/Warren_G_Harding> owl:sameAs wd:Q35286 .
+
+<http://example.org/kg/WieruszKowalski> owl:sameAs wd:Q358110 .
+
+<http://example.org/kg/Wilhelm_Rntgen> owl:sameAs wd:Q35149 .
+
+<http://example.org/kg/William_Collins> owl:sameAs wd:Q2623883 .
+
+<http://example.org/kg/Wydawnictwo_Znak> owl:sameAs wd:Q3575666 .
+
+<http://example.org/kg/Zosia> owl:sameAs wd:Q61866178 .
+
+<http://example.org/kg/nouveau> owl:sameAs wd:Q310474 .
+
+<http://example.org/kg/orawski> owl:sameAs wd:Q64781468 .
+
